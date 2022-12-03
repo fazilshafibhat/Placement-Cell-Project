@@ -1,0 +1,88 @@
+<div class="row min-vh-100">
+    <!-- View Result Section -->
+    <section class="col-md-4 border border-top-0" style="background: #eee; background-image: url(/images/bg-form.png);" >
+        <div class="m-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="text-danger" style="font-weight: 700;">
+                            <%= company.companyName %>
+                        </span>
+                            Conducted an Interview on 
+                            <span class="text-primary" style="font-weight: 700;">
+                            <%= helper.convert(company.doi) %>
+                            </span>
+                            the alloted students are listed below and the selected Students are given a green shade.
+                    </div>
+                    <form action="/posts/store-result/<%= company._id %>" method="post">
+                        <ul class="list-group p-2">
+                            <% company.result.forEach((std)=>{ %>
+                                <% if(std.value){ %>
+                                    <li class="list-group-item list-group-item-success" id="student-list-item-<%= std._id %>">
+                                        <%= std.student.studentName %>
+                                    </li>
+                                <% }else{ %>
+                                    <li class="list-group-item list-group-item-danger" id="student-list-item-<%= std._id %>">
+                                        <%= std.student.studentName %>
+                                    </li>
+                                <% } %>
+                                
+                            <% }) %>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company cards Section -->
+    <section class="col-md-8 bg-light" style="background: #f8f9fa; background-image: url(/images/bg-table.png);">
+        <div class="w-100">
+            <!-- Heading -->
+            <h2 class="d-flex align-items-center justify-content-center h3 py-5">
+                Company Register 
+            </h2>
+            <div class="row mx-3" id="company-content">
+                <% companies.forEach((element)=>{ %>
+                    <!-- Company Card -->
+                <div class="col-sm-4 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="">
+                                    <h5 class="card-title"><%= element.companyName %></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted"><%= helper.convert(element.doi) %></h6>
+                                </div>
+                                <% if(!element.flag){ %>
+                                    <div class="">
+                                        <i class="text-warning fa-2x fa-regular fa-hourglass"></i>
+                                    </div>
+                                <% }else{%> 
+                                    <div class="">
+                                        <i class="text-success fa-2x fa-regular fa-circle-check"></i>
+                                    </div>
+                                <%} %>
+                                
+                            </div>
+                            
+                            
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <% if(!element.flag){ %>
+                                <a href="/posts/add-result/<%= element._id %>" class="card-link">Add Result</a>
+                            <% }else{ %>
+                                <a href="/posts/show-result/<%= element._id %>" class="card-link">View Result</a>
+                            <% } %>
+                            
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+                
+                
+            </div>
+        </div>  
+    </section>
+</div>
+
+
+<script src="/js/result.js"></script>

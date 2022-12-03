@@ -1,0 +1,112 @@
+<div class="row w-100 min-vh-100">
+    <!-- Create New Interview Form  -->
+    <section class="col-md-4 border border-top-0" style="background: #eee; background-image: url(/images/bg-form.png);">
+        <div>
+            <div class="d-flex align-items-center justify-content-center h3 py-5">
+                Company Form
+            </div>
+            
+            <form action="/posts/create-company" method="post">
+                <!-- Contains Company Name -->
+                <div class="row text-dark my-3 px-4">
+                    <div class="col-sm-auto d-flex align-items-center justify-content-center fs-5">
+                        <label for="result">Company Name</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Company Name" required>
+                    </div>
+                </div>
+                <!-- Date of Interview -->
+                <div class="row text-dark my-3 px-4">
+                    <div class="col-sm-auto d-flex align-items-center justify-content-center fs-5">
+                        <label for="result">Date Of Interview</label>
+                    </div>
+                    <div class="col-sm-12">
+                        
+                        <input type="date" class="form-control" id="doi" min="2017-01-01" name="doi" max="2022-04-17" required>
+                    </div>
+                </div>
+                <!-- jobless Students List  -->
+                <div class="row text-dark my-3 px-4">
+                    <div class="col-sm-auto fs-5">
+                        <label for="result">Student List</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <!-- Multiple select dropdown box -->
+                        <select class="country" multiple name="students" id="" required>
+                            <% jobless.forEach(function(element){ %>
+                                <option value="<%= element._id %>">
+                                    <%= element.studentName %>
+                                </option>
+                            <% }); %>
+                        </select>
+                    </div>
+                </div>
+                <!-- Submit button -->
+                <div class="row d-flex justify-content-center">
+                    <button type="submit" class="col-auto btn btn-primary my-3">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    <!-- List of Interviews -->
+    <section class="col-md-8 bg-light" style="background: #f8f9fa; background-image: url(/images/bg-table.png);">
+        <div class="w-100">
+            <!-- Heading -->
+            <h2 class="d-flex align-items-center justify-content-around  py-5">
+                <div class="h3">Schedule an Interview with the Company</div>
+                <div class="d-flex justify-content-end mx-3 mb-2">
+                    <a href="/table">
+                        <button type="button" class="btn btn-sm btn-outline-dark me-2">
+                            Download Table
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                        </button>
+                    </a>
+                </div>
+            </h2>
+            
+            <div class="row mx-3" id="company-content">
+                <% company.forEach((element)=>{ %>
+                    <!-- Company Card -->
+                <div class="col-sm-4 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="">
+                                    <h5 class="card-title"><%= element.companyName %></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted"><%= helper.convert(element.doi) %></h6>
+                                </div>
+                                <% if(!element.flag){ %>
+                                    <div class="">
+                                        <i class="text-warning fa-2x fa-regular fa-hourglass"></i>
+                                    </div>
+                                <% }else{%> 
+                                    <div class="">
+                                        <i class="text-success fa-2x fa-regular fa-circle-check"></i>
+                                    </div>
+                                <%} %>
+                                
+                            </div>
+                            
+                            
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <% if(!element.flag){ %>
+                                <a href="/posts/add-result/<%= element._id %>" class="card-link">Add Result</a>
+                            <% }else{ %>
+                                <a href="/posts/show-result/<%= element._id %>" class="card-link">View Result</a>
+                            <% } %>
+                            
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+                
+                
+            </div>
+        </div>  
+    </section>
+        
+    
+</div>
+<script src="/js/company.js"></script>
