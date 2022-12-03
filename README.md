@@ -1,21 +1,19 @@
 # Placement-Cell
 
-An Application that allows a company's employee to store their students details, interview held through them and allows 
-the company to download the result of all interviews along with results in a .csv file
+An Application that allows a company's employee to store their students details, interview held through them and allows the company to download the result of all interviews along with results in a .csv file
 
 ## Table of Contents
-* Generalinfo
-* Technology
+* Introduction
+* Technology Used
 * Setup
 * Functionality
 * status
-* Link
 
 ## Introduction
-A company constantly needs to download their data to compile different reports. This application creates an interface for the employees of this company to fill in the data into the database and then download it in CSV format.
+A company constantly needs to download their data to compile different reports. This application creates an interface for the employees of the company to fill in the data into the database and then download it in CSV format.
 
     
-## Technology
+## Technology Used
     1. Node.js
     2. Express
     3. MongoDB
@@ -23,16 +21,10 @@ A company constantly needs to download their data to compile different reports. 
     5. EJS
 
 ## Setup
-   Make sure that Node.js, Mongodb, robo3T, VS Code(any text editor) and  are installed in your local system. 
+   Make sure that Node.js, Mongodb, robo3T, VS Code(any text editor) are installed in your local system. 
    Open the terminal and type the following commands
    * npm install --save-dev nodemon
-   * npm install (Tod download all the dependencies)
-   * create a .env file in the root of the project
-   * Paste the following in your .env file
-   
-        >SECRET = AnyTextOfYourChoice
-        
-        >Mongodb_Atlas_URL = mongodb://localhost:27017/PlacementCell_development
+   * npm install (To download all the dependencies)
    * To run the project type **npm start** in the terminal
 
 ## Functionality
@@ -53,5 +45,4 @@ The Project is not completly developed, Features such as
   4. Flash Messages can be implemented for better user experience
   5. Edit buttons can be implemented throughout all the functionality.
   
-## Link
-https://obscure-castle-82355.herokuapp.com/
+
